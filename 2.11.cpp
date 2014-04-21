@@ -41,9 +41,13 @@ int maxDiff1(int A[],int n){
 	//最大值位于某个桶的最小值与前一个桶中的最大值的差值
 	int maxDiff = delta;
 	int maxbefore,minthis;
+	bool flag = false;  //标志存在maxbefore
 	for(int i=1;i<n;i++){
-		if(bucket[i-1].size()!=0)
+		if(bucket[i-1].size()!=0){
 			maxbefore = *max_element(bucket[i-1].begin(),bucket[i-1].end());
+			flag = true;
+		}
+		if(!flag) continue;
 		if(bucket[i].size()==0) continue;
 		int minthis = *min_element(bucket[i].begin(),bucket[i].end());
 		int diff = minthis-maxbefore;
